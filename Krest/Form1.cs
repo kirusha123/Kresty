@@ -91,7 +91,9 @@ namespace Krest
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter("./out.txt", false, System.Text.Encoding.Default))
+                string filename = "timestamp-" + Convert.ToString(t);
+                filename = filename.Replace(',', '.');
+                using (StreamWriter sw = new StreamWriter("./" + filename, false, System.Text.Encoding.Default))
                 {
                     sw.WriteLine("t = " + Convert.ToString(t));
                     for (int i = 0; i < ujprev.Count; i++)
@@ -118,7 +120,6 @@ namespace Krest
             {
                 PointF p = new PointF(x, Ut0(x));
                 ujprev.Add(idx++, p);
-                // chart1.Series[0].Points.AddXY(x, p.Y);
                 x += h;
             }
             ujprev.Add(idx, new PointF(xmax, Udxl(t)));
